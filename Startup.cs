@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FoodStore.Data;
+using FoodStore.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace FoodStore
             services.AddControllers();
 
             services.AddDbContext<FoodStoreContext>(opt => opt.UseMySql(Configuration.GetConnectionString("FoofStoreConnection")));
+
+            services.AddScoped<IFoodRepo, SqlFoodRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
